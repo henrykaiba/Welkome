@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel='stylesheet' href="{%static 'css/faq.css' %}"/>
+    <style>.line {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        border: 1px solid black;
+    }
+
+    .outer {
+        margin-top: 50px;
+        display: flex;
+    }
+
+    .outer button {
+        margin: 0 auto;
+        color: white;
+        font-size: 1.3em;
+        width: 400px;
+        height: 100px;
+        background: #f1d281;
+        border-radius: 10px;
+    }
+
+    .board {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .board button{
+        width: 100px;
+        height: 30px;
+        margin-left: 100px;
+    }
+    </style>
+</head>
+<body>
+    <p><a href="{% url 'chi:index' %}">home</a> <a href="{% url 'posts:contact' %}">한국어</a> <a href="{% url 'eng:contact' %}">English</a> <a href="{% url 'chi:contact' %}">中文</a></p>
+    <div class="line">
+        <div class="outer">
+            <button onclick="location.href='{% url 'chi:faq' %}'" class="menu">FAQ</button>
+            <button onclick="location.href='{% url 'chi:useful'%}'" class="menu">Useful Information</button>
+            <button onclick="location.href='{% url 'chi:contact'%}'" class="menu">Contact</button>
+        </div>
+        <div class="board">
+            <div class="click">
+                韩国留学生信息网站</br>
+                henrykaiba@naver.com</br>
+                010-0000-0000
+            </div>
+            <div class="click">
+                <form action="{% url 'chi:contact' %}" method="post">
+                    {% csrf_token %}
+                    联属关系
+                    <input type="text" name="result1" value="联属关系">
+                    电话号码
+                    <input type="text" name="result2" value="包罗列 -">
+                    撰文人
+                    <input type="text" name="result3" value="名号">
+                    <button onclick="">离任联络人</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

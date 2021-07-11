@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+    <link rel='stylesheet' href="{% static 'css/faq.css' %}"/>
+        <style>.line {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border: 1px solid black;
+}
+
+.outer {
+    margin-top: 50px;
+    display: flex;
+}
+
+.outer button {
+    margin: 0 auto;
+    color: white;
+    font-size: 1.3em;
+    width: 400px;
+    height: 100px;
+    background: #f1d281;
+    border-radius: 10px;
+}
+
+.board {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.box{
+    border: 1px solid black;
+    width: 1200px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.board button{
+    width: 100px;
+    height: 30px;
+    margin-left: 100px;
+}
+</style>
+</head>
+<body>
+    <p><a href="{% url 'posts:index' %}">home</a> <a href="{% url 'posts:faq' %}">한국어</a> <a href="{% url 'eng:faq' %}">English</a> <a href="{% url 'chi:faq' %}">中文</a></p>
+    <div class="line">
+        <div class="outer">
+            <button onclick="location.href='{% url 'posts:faq' %}'" class="menu">FAQ</button>
+            <button onclick="location.href='{% url 'posts:useful'%}'" class="menu">Useful Information</button>
+            <button onclick="location.href='{% url 'posts:contact'%}'" class="menu">Contact</button>
+        </div>
+        <div class="board">
+            <div class="box">
+                {% if faqs %}
+                    <ul>
+                    {% for faq in faqs %}
+                        <li><a onclick="location.href='{{ faq.get_absolute_url }}'">{{ faq.title }}</a></li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>많이하는 질문</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -4,7 +4,6 @@ from .models import Post, FAQ, Useful, Contact
 
 def index(request):
     posts = Post.objects.all().order_by('-search_count')
-    print("ok")
     context = {
         'posts': posts,
     }

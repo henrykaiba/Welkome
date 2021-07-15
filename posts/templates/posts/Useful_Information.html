@@ -4,45 +4,64 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>Useful_Information</title>
-    <link rel='stylesheet' href="{%static 'css/faq.css' %}"/>
-    <style>.line {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    border: 1px solid black;
-}
+    <style>
+        .line {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            border: 1px solid black;
+        }
+        .outer {
+            margin-top: 50px;
+            display: flex;
+        }
 
-.outer {
-    margin-top: 50px;
-    display: flex;
-}
+        .outer button {
+            margin: 0 auto;
+            color: white;
+            font-size: 1.3em;
+            width: 400px;
+            height: 100px;
+            background: #f1d281;
+            border-radius: 10px;
+        }
 
-.outer button {
-    margin: 0 auto;
-    color: white;
-    font-size: 1.3em;
-    width: 400px;
-    height: 100px;
-    background: #f1d281;
-    border-radius: 10px;
-}
+        .board {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .box{
+            border: 1px solid black;
+            width: 1200px;
+            height: 500px;
+            margin: 0 auto;
+        }
 
-.board {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.box{
-    border: 1px solid black;
-    width: 1200px;
-    height: 500px;
-    margin: 0 auto;
-}
-
-.board button{
-    width: 100px;
-    height: 30px;
-    margin-left: 100px;
-}
-</style>
+        .board button{
+            width: 100px;
+            height: 30px;
+            margin-left: 100px;
+        }
+        .list{
+            border-bottom: black 1px solid;
+            width: 100%;
+            margin: 0px;
+        }
+        .list a{
+            width: 100%;
+            display: flex;
+        }
+        .list p{
+            padding: 5px;
+        }
+        .list p:first-child{
+            width: 80%;
+            margin: 0px;
+        }
+        .list p:last-child{
+            width: 20%;
+            margin: 0px;
+        }
+    </style>
 </head>
 <body>
     <p><a href="{% url 'posts:index' %}">home</a> <a href="{% url 'posts:useful' %}">한국어</a> <a href="{% url 'eng:useful' %}">English</a> <a href="{% url 'chi:useful' %}">中文</a></p>
@@ -54,11 +73,14 @@
         </div>
         <div class="board">
             <div class="box">
-                <ul>
+            <p style="text-align: center; border-bottom: black 1px solid; width: 100%; margin: 0px; font-size: 2em;">Useful Information</p>
+                {% if usefuls %}
                     {% for useful in usefuls %}
-                        <li><a onclick="location.href='{{ useful.get_useful_url }}'">{{ useful.title }}</a></li>
+                        <div class="list"><a onclick="location.href='{{ useful.get_useful_url }}'"><p>{{ useful.title }}</p><p>{{ useful.create_date }}</p></a></div>
                     {% endfor %}
-                </ul>
+                {% else %}
+                    <p>유용한정보</p>
+                {% endif %}
             </div>
         </div>
     </div>
